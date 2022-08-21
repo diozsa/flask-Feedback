@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Feedback{% endblock %}
+
+{% block content %}
+
+<h1>Edit Feedback</h1>
+
+<form method="POST" action="/feedback/{{ feedback.id }}/update">
+
+  <!-- adding duplicate content from _form.html -->
+  {% include "_form.html" %}
+
+  <button class="btn btn-primary">Edit!</button>
+</form>
+
+{% endblock %}

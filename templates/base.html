@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+        Flask Feedback &mdash; {% block title %}{% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand text-light" href="/">Flask Feedback</a>
+        <ul class="navbar-nav">
+            <!-- show Logout if user is logged in -->
+            {% if 'username' in session %}
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/logout">Logout</a>
+              </li>
+            {% else %}
+            <!-- show Login / SignUp if user is logged out -->
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/register">Sign up</a>
+              </li>       
+            {% endif %}
+        </ul>
+      </nav>
+
+      <div class="container mt-5">
+        {% for msg in get_flashed_messages() %}
+        <div class="alert alert-info">{{ msg }}</div>
+        {% endfor %}
+      
+        {% block content %}<!-- page content -->{% endblock %}
+      </div>
+    
+</body>
+</html>
